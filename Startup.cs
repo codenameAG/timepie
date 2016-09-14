@@ -1,19 +1,23 @@
-using System;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace capp.TimePie{
-    public class Startup : IStartup
+namespace capp.TimePie
+{
+    public class Startup 
     {
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            throw new NotImplementedException();
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app)
         {
-            throw new NotImplementedException();
+            app.UseMvc(routes =>{
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+            });
         }
 
        
